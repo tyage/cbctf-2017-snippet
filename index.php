@@ -1,22 +1,77 @@
-<?php include('config.php') ?>
-<h1>Welcome to gist</h1>
-
 <?php
+include('config.php');
 if (file_exists($USER_DIR . '/is_admin')) {
-  die($FLAG);
+  exit($FLAG);
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CODE BLUE Snippet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/codemirror.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/codemirror.js"></script>
+    <style>
+        .CodeMirror {
+            border: 1px solid #c0c0c0;
+        }
 
-<a href="export.php?dir=<?php echo $USER_DIR ?>">Export</a>
-<a href="<?php echo $USER_DIR ?>">Your files</a>
+        .btns {
+            margin-top: 8px;
+            text-align: right;
+        }
 
-<form action="import.php?dir=<?php echo $USER_DIR ?>" enctype="multipart/form-data" method="POST">
-  <input type="file" name="file">
-  <input type="submit" value="Import">
-</form>
+        input[type="text"] {
+            padding: 8px;
+            width: 320px;
+        }
 
-<form action="post.php" method="post">
-  <input name="filename">
-  <textarea name="contents"></textarea>
-  <input type="submit" value="POST">
-</form>
+        .btns input[type="submit"] {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 0;
+            background: #f0f0f0;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #files {
+            margin-top: 24px;
+            border-top: 1px solid #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <h1>CODE BLUE Snippet</h1>
+
+    <p><a href="export.php?dir=<?php echo $USER_DIR ?>">Export</a></p>
+    <p><a href="<?php echo $USER_DIR ?>">Your files</a></p>
+
+    <hr />
+
+    <h2>Post</h2>
+    <form action="post.php">
+        <p><input type="text" name="filename" placeholder="filename"></p>
+        <p><textarea id="code" name="contents"></textarea></p>
+        <div class="btns">
+            <input type="submit" value="Create Snippet">
+        </div>
+    </form>
+
+    <hr />
+
+    <h2>Import</h2>
+
+    <form action="import.php?dir=<?php echo $USER_DIR ?>" enctype="multipart/form-data" method="POST">
+        <input type="file" name="file">
+        <div class="btns">
+            <input type="submit" value="Import">
+        </div>
+    </form>
+
+    <script>
+        CodeMirror.fromTextArea(document.getElementById('code'), {lineNumbers: true});
+    </script>
+</body>
+</html>
