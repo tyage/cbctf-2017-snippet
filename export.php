@@ -1,10 +1,12 @@
 <?php
-
 $tmpfile = '/tmp/' . tempnam();
+
+if (dirname($_GET['dir']) !== '.') {
+  die('You should provide only directory name!');
+}
 
 $zip = new ZipArchive();
 $zip->open($tmpfile, ZipArchive::CREATE);
-// TODO: check dirname($_GET['dir']) && basename($_GET['dir'])
 $options = array('remove_path' => $_GET['dir']);
 
 $dir = trim($_GET['dir'], '/');
@@ -17,4 +19,4 @@ readfile($tmpfile);
 
 unlink($tmpfile);
 
-// TODO: show hmac
+// TODO: show hmac OR password?
