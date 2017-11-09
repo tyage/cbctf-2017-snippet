@@ -1,10 +1,10 @@
 <?php
 include('config.php');
 
-$tmpfile = tempnam('/tmp', 'gist');
+$tmpfile = tempnam('/tmp', 'cbs');
 
-if (dirname($_GET['dir']) !== '.') {
-  die('You should provide only directory name!');
+if (preg_match('/\.|\\\\|^\//', $_GET['dir']) === 1) {
+  die('hello hacker :(');
 }
 
 $zip = new ZipArchive();
