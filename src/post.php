@@ -2,7 +2,7 @@
 include('config.php');
 
 $filename = strtolower($_POST['filename']);
-if ($filename == 'is_admin' || preg_match('/php/i', $filename)) {
+if ($filename == 'is_admin' || preg_match('/php/i', $filename) || $filename[0] === '.') {
   die('Hello hacker :)');
 }
 
