@@ -3,4 +3,5 @@ $MY_SECRET = 'immortalmageagent';
 $SALT = 'immortalmageagent';
 $FLAG = 'CBCTF{hogehogege}';
 
-$USER_DIR = md5($SALT . $_SERVER['REMOTE_ADDR']);
+session_start();
+$USER_DIR = md5($SALT . $_SERVER['REMOTE_ADDR'] . session_id());
