@@ -1,12 +1,16 @@
-<?php
-$dir = md5($_SERVER['REMOTE_ADDR']);
-?>
+<?php include('config.php') ?>
 <h1>Welcome to gist</h1>
 
-<a href="export.php?dir=<?php echo $dir ?>">Export</a>
-<a href="<?php echo $dir ?>">Your files</a>
+<?php
+if (file_exists($USER_DIR . '/is_admin')) {
+  die($FLAG);
+}
+?>
 
-<form action="import.php?dir=<?php echo $dir ?>" enctype="multipart/form-data">
+<a href="export.php?dir=<?php echo $USER_DIR ?>">Export</a>
+<a href="<?php echo $USER_DIR ?>">Your files</a>
+
+<form action="import.php?dir=<?php echo $USER_DIR ?>" enctype="multipart/form-data" method="POST">
   <input type="file" name="file">
   <input type="submit" value="Import">
 </form>

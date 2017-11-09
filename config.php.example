@@ -1,0 +1,7 @@
+<?php
+// this is not part of the challenge
+$MY_SECRET = 'XXXXXXXXXXXXXX';
+$SALT = 'XXXXXXXXXXXXXX';
+$FLAG = 'CBCTF{XXXXXXXXXXXXXX}';
+
+$USER_DIR = md5($SALT . $_SERVER['REMOTE_ADDR']);

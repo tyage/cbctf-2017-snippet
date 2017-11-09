@@ -1,6 +1,12 @@
 <?php
-$dir = md5($_SERVER['REMOTE_ADDR']);
-@mkdir($dir);
-file_put_contents($dir . '/' . $_POST['filename'], $_POST['contents']);
+include('config.php');
+
+$filename = strtolower($_POST['filename']);
+if ($filename == 'is_admin' || preg_match('/php/i', $filename)) {
+  die('Hello hacker :)');
+}
+
+@mkdir($USER_DIR);
+file_put_contents($USER_DIR . '/' . basename($_POST['filename']), $_POST['contents']);
 
 header('Location: /');

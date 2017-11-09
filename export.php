@@ -1,6 +1,7 @@
 <?php
-include('secret.php');
-$tmpfile = '/tmp/' . tempnam();
+include('config.php');
+
+$tmpfile = tempnam('/tmp', 'gist');
 
 if (dirname($_GET['dir']) !== '.') {
   die('You should provide only directory name!');
@@ -18,7 +19,7 @@ $zip->close();
 // TODO: show hmac OR password?
 
 $hmac = hash_hmac('sha1', file_get_contents($tmpfile), $MY_SECRET);
-header('Content-Disposition: attachment; filename="$hmac.zip"');
+header("Content-Disposition: attachment; filename='${hmac}.zip'");
 readfile($tmpfile);
 
 unlink($tmpfile);
