@@ -7,6 +7,6 @@ if ($filename == 'is_admin' || preg_match('/\./', $filename)) {
 }
 
 @mkdir($USER_DIR);
-file_put_contents($USER_DIR . '/' . $_POST['filename'], $_POST['contents']);
+file_put_contents($USER_DIR . '/' . $filename, $_POST['contents']);
 
 header('Location: /');
