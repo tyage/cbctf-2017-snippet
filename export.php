@@ -16,8 +16,6 @@ $zip->addGlob($dir . '/*', 0, $options);
 
 $zip->close();
 
-// TODO: show hmac OR password?
-
 $hmac = hash_hmac('sha256', file_get_contents($tmpfile), $MY_SECRET);
 header("Content-Disposition: attachment; filename='${hmac}.zip'");
 readfile($tmpfile);
