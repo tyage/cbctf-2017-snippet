@@ -5,4 +5,5 @@ RUN set -x && \
   apt install zlib1g-dev && \
   docker-php-ext-install zip
 
-COPY . /var/www/html/
+COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
+COPY src /var/www/html/
