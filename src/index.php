@@ -58,13 +58,13 @@ if (file_exists($USER_DIR . '/is_admin')) {
 <body>
     <h1>CODE BLUE Snippet</h1>
 
-    <a href="export.php?dir=<?php echo $USER_DIR ?>">Export</a>
+    <a href="export.php?dir=<?=$USER_DIR?>">Export</a>
     <span>&nbsp;|&nbsp;</span>
-    <a href="<?php echo $USER_DIR ?>">Your files</a>
+    <a href="<?=$USER_DIR?>">Your files</a>
     <hr>
 
     <h2>Import</h2>
-    <form action="import.php?dir=<?php echo $USER_DIR ?>" enctype="multipart/form-data" method="POST">
+    <form action="import.php?dir=<?=$USER_DIR?>" enctype="multipart/form-data" method="POST">
         <input type="file" name="file">
         <input type="submit" value="Import">
     </form>

@@ -11,4 +11,6 @@ $zip = new ZipArchive();
 $zip->open($tmpfile);
 $zip->extractTo($USER_DIR);
 
+$zip->close();
+
 header('Location: /');
