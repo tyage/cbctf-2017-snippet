@@ -45,8 +45,8 @@ if (file_exists($USER_DIR . '/is_admin')) {
 <body>
     <h1>CODE BLUE Snippet</h1>
 
-    <p><a href="export.php?dir=<?php echo $USER_DIR ?>">Export</a></p>
-    <p><a href="<?php echo $USER_DIR ?>">Your files</a></p>
+    <a href="export.php?dir=<?php echo $USER_DIR ?>">Export</a>&nbsp;|
+    <a href="<?php echo $USER_DIR ?>">Your files</a>
 
     <hr />
 
