@@ -6,8 +6,8 @@ $dir = md5($_SERVER['REMOTE_ADDR']);
 <a href="export.php?dir=<?php echo $dir ?>">Export</a>
 <a href="<?php echo $dir ?>">Your files</a>
 
-<form action="import.php">
-  <input type="file">
+<form action="import.php?dir=<?php echo $dir ?>" enctype="multipart/form-data">
+  <input type="file" name="file">
   <input type="submit" value="Import">
 </form>
 

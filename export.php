@@ -1,4 +1,5 @@
 <?php
+include('secret.php');
 $tmpfile = '/tmp/' . tempnam();
 
 if (dirname($_GET['dir']) !== '.') {
@@ -14,9 +15,10 @@ $zip->addGlob($dir . '/*', 0, $options);
 
 $zip->close();
 
-header('Content-Disposition: attachment; filename="export.zip"');
+// TODO: show hmac OR password?
+
+$hmac = hash_hmac('sha1', file_get_contents($tmpfile), $MY_SECRET);
+header('Content-Disposition: attachment; filename="$hmac.zip"');
 readfile($tmpfile);
 
 unlink($tmpfile);
-
-// TODO: show hmac OR password?
